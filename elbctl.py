@@ -27,7 +27,7 @@ import time
 
 
 argparser = argparse.ArgumentParser(description='ELB Operations tasks')
-argparser.add_argument('-a', '--action', help='list/status/attach/detach', required=True)
+argparser.add_argument('-a', '--action', choices=['list','status','attach','detach'], help='list/status/attach/detach', required=True)
 argparser.add_argument('-p', '--profile', default="default", help='If no profile provided, assumes default')
 argparser.add_argument('-r', '--region', default="eu-west-1", help='Default is eu-west-1, or provide as argument')
 argparser.add_argument('--elb', nargs='+', help='Name/s of Aws ELB')
