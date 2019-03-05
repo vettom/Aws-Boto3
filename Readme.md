@@ -4,9 +4,9 @@
 > All scripts expect AWS cli to be configured and at least one profile called default
 
 ### Scripts 
-- dnsupdate.py               : Create DNS Alias record
-- ec2instance.py             : Manage Ec2 instance stop/start
-- elbctl.py                  : Mange Classig ELB 
+- [dnsupdate.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Create DNS Alias record
+- [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Manage Ec2 instance stop/start
+- [elbctl.py]     (https://github.com/vettom/Aws-Boto3#elbctlpy)             : Mange Classig ELB 
 
 # Script details
 
@@ -67,3 +67,25 @@ optional arguments:
   -i INSTANCES [INSTANCES ...], --instances INSTANCES [INSTANCES ...]
                         Instance ID/s
                         ```
+
+
+### ec2instance.py
+
+```
+ec2instance.py -h
+usage: ec2instance.py [-h] [--profile PROFILE] [--region REGION]
+                      [--instance INSTANCE]
+                      action
+
+Perform common instance tasks
+
+positional arguments:
+  action               Instance action to be performed
+                       list/start/stop/restart/status
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --profile PROFILE    If no profile provided, assumes default
+  --region REGION      Default is eu-west-1, or provide as argument
+  --instance INSTANCE  Name of Aws instance
+```
