@@ -6,7 +6,7 @@
 ### Scripts 
 - [dnsupdate.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Create DNS Alias record
 - [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Manage Ec2 instance stop/start
-- [elbctl.py]     (https://github.com/vettom/Aws-Boto3#elbctlpy)             : Mange Classig ELB 
+- [elbctl.py](https://github.com/vettom/Aws-Boto3#elbctlpy)             : Mange Classig ELB 
 
 # Script details
 
@@ -66,7 +66,8 @@ optional arguments:
   --vpc VPC [VPC ...]   Name/s of Aws VPC
   -i INSTANCES [INSTANCES ...], --instances INSTANCES [INSTANCES ...]
                         Instance ID/s
-                        ```
+
+```
 
 
 ### ec2instance.py
