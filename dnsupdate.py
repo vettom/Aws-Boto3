@@ -33,7 +33,7 @@ Alias = Sub.add_parser("alias",help="Create new alias record to a CNAME")
 Alias.add_argument('-a','--alias', nargs='+', help='List of new alias to be created')
 Alias.add_argument('-f', '--src_file',  help='File containing Alias list, one per line')
 Alias.add_argument('-d','--dest_url', help='Name of destination of URL', required=True)
-Alias.add_argument('-z','--zoneid', default='ABCD', help='Zone ID, defaults to adobecqms ID')
+Alias.add_argument('-z','--zoneid', default='ABCD', help='Zone ID, defaults to SET HERE')
 Alias.add_argument('--destzoneid', default='ABCD', help='Destination Zone ID for ELB only or if different zoneid')
 Alias.add_argument('--health_check', default=False, choices= ['True', 'False'] ,help='Evaluate health check, Default False')
 
