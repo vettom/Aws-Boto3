@@ -10,7 +10,8 @@
 # Script details
 
 ### dnsupdate.py
-``` usage: dnsupdate.py alias [-h] [-a ALIAS [ALIAS ...]] [-f SRC_FILE] -d
+``` 
+usage: dnsupdate.py alias [-h] [-a ALIAS [ALIAS ...]] [-f SRC_FILE] -d
                           DEST_URL [-z ZONEID] [--destzoneid DESTZONEID]
                           [--health_check {True,False}]
 
@@ -28,5 +29,6 @@ optional arguments:
                         Destination Zone ID for ELB only or if different
                         zoneid
   --health_check {True,False} 
-                        Evaluate health check, Default False ```
+                        Evaluate health check, Default False 
+```
 
