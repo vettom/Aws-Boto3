@@ -71,6 +71,7 @@ optional arguments:
 
 
 ### ec2instance.py
+Start/stop aws instance, list all instances and status of instance.
 
 ```
 ec2instance.py -h
