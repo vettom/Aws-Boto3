@@ -1,18 +1,17 @@
-# Python - Aws Boto3 Scripts
+# Python - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/Robin-100px.png "Denny Vettom Logo")
 **Collection of Python3 scripts to manage AWS instance with help of Boto3. Scripts are written in self help mode.**
 > scriptname -h for help
 > All scripts expect AWS cli to be configured and at least one profile called default
 
-![alt text](https://vettom.github.io/images/Robin-100px.png "Denny Vettom Logo")
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 
 ### Scripts 
 - [dnsctl.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Add/remove/update DNS record
 - [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Manage Ec2 instance stop/start
 - [elbctl.py](https://github.com/vettom/Aws-Boto3#elbctlpy)             : Mange Classig ELB 
 
-# Script details
+# Script details ![alt text](https://vettom.github.io/images/dv-tec-logo.png "Denny Vettom  Tech Logo")
 
 ### dnsupdate.py
   Script can accept list of aliases or a list provided in a file. Zone ID is required, destzoneid required if destination alias in different DNS zone
