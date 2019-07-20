@@ -44,7 +44,7 @@ Script to manage DNS record in adobecqms.net by default or provide -z zoneid
 to create in another zone.
 ```
 
-##### Creating multiple alias record pointing to xyz.vettom.co.uk. Accept at command line or from file.
+- Creating multiple alias record pointing to xyz.vettom.co.uk. Accept at command line or from file.
 
 ``` 
 ./dnsupdate.py add -s 123.vettom.co.uk abc.vettom.co.uk -d zyz.vettom.co.uk  
