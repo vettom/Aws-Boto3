@@ -2,8 +2,8 @@
 # ----------------------------------------------------------------------------
 # Purpose : Manage DNS tasks like DNA A, Alias, update, list, remove etc.
 # Author:       Denny Vettom
-# Dependencies: Aws cli with profile, boto3 and dvmodule.py, validators, socket
-# Improved version with sub menu and its own argument 
+# Dependencies: Python3, Aws cli with profile, boto3, validators, socket
+# https://github.com/vettom/Aws-Boto3
 # ----------------------------------------------------------------------------
 # Name          Date            Comment                         Version
 # ----------------------------------------------------------------------------
@@ -16,15 +16,19 @@ import validators, socket
 # Set Boto3 client
 route53=boto3.client('route53')
 """
-Add remove or delete DNS entry. 
+Add update or delete DNS entry. 
+Define default ZoneID in variable if you are using same zone frequently.
+Script checks and validates if provided arguments are valid IP or CNAME
+If request is to add resource script will check for existing entry and exit if entry already exists.
+Script will create alias record if destination is CNAME, and A record if IP provided.
 """
+# Set a default value for Default Zone ID.
+DEFZONEID = "ABCD"
 
-NOTE = "Script to manage DNS record in adobecqms.net by default or provide -z zoneid to create in another zone."
+NOTE = "Script to manage DNS record, set default ZoneID or specify -z zoneid "
 
 # Use Arg Parse function to get input.
-P = argparse.ArgumentParser(description='Manage routine snapshot tasks.', epilog=NOTE)
-
-# List last 10 snapshots for source hosts based on --src_device
+P = argparse.ArgumentParser(description='Manage DNS tasks, add/update/delete.', epilog=NOTE)
 P.add_argument('Task', choices=['add','update', 'delete'], help='Choose task toperform')
 
 # Here mutually exclusive option to decide if it is IP, alias or list of aliases in file
@@ -35,7 +39,7 @@ group.add_argument('-f', '--src_file', help='File containing Alias list, one per
 
 # Accepting regular arguments
 P.add_argument('-d','--destination',  help='Destination CNAME or IP')
-P.add_argument('-z','--zoneid', default='ABCD', help='Zone ID, defaults to adobecqms ID')
+P.add_argument('-z','--zoneid', default=DEFZONEID, help='Zone ID, set default variable if required')
 P.add_argument('--destzoneid', default='ABCD', help='Destination Zone ID for ELB only or if different zoneid')
 P.add_argument('--health_check', default=False, choices= ['True', 'False'] ,help='Evaluate health check, Default=False')
 
