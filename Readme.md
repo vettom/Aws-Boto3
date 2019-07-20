@@ -2,7 +2,7 @@
 **Collection of Python3 scripts to manage AWS instance with help of Boto3. Scripts are written in self help mode.**
 > scriptname -h for help
 > All scripts expect AWS cli to be configured and at least one profile called default
-
+[logo] : https://vettom.github.io/images/Robin-100px.png "Denny Vettom Logo"
 ### Scripts 
 - [dnsctl.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Add/remove/update DNS record
 - [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Manage Ec2 instance stop/start
