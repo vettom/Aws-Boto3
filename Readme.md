@@ -81,6 +81,24 @@ optional arguments:
 
 ```
 
+- List all ELB in a VPC in region eu-west-1 using profile dev
+
+```
+elbctl.py list --vpc vpc-9c8b9dsd -r eu-west-1 -p dev
+
+```
+
+- Status of elb
+```
+elbctl.py status --elb vettom
+
+```
+
+- Attach/Detach multiple servers from multiple elb in one command
+```
+elbctl.py attah/detach  --elb vettomelb1 vettom-elb2 -i i-07d9ff1c2d74269c4 i-0de28ee8dfd3ec57b
+
+```
 
 ### ec2instance.py
 Start/stop aws instance, list all instances and status of instance.
