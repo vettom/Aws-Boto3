@@ -11,7 +11,7 @@
 - [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Manage Ec2 instance stop/start
 - [elbctl.py](https://github.com/vettom/Aws-Boto3#elbctlpy)             : Mange Classig ELB 
 
-# Script details ![alt text](https://vettom.github.io/images/dv-tec-logo.png "Denny Vettom  Tech Logo")
+# Script details ![alt text](https://vettom.github.io/images/dv-tec-logo-round.png "Denny Vettom  Tech Logo")
 
 ### dnsupdate.py
   Script can accept list of aliases or a list provided in a file. Zone ID is required, destzoneid required if destination alias in different DNS zone
