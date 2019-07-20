@@ -3,7 +3,9 @@
 > scriptname -h for help
 > All scripts expect AWS cli to be configured and at least one profile called default
 
-![alt text] (https://vettom.github.io/images/Robin-100px.png "Denny Vettom Logo")
+![alt text](https://vettom.github.io/images/Robin-100px.png "Denny Vettom Logo")
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
 ### Scripts 
 - [dnsctl.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Add/remove/update DNS record
