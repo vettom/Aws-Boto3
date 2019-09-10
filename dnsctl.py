@@ -26,7 +26,7 @@ Script will create alias record if destination is CNAME, and A record if IP prov
 # Set a default value for Default Zone ID.
 DEFZONEID = "Z2AYG8VDA7NG3D"
 
-NOTE = "Script to manage DNS record in adobecqms.net by default or provide -z zoneid to create in another zone."
+NOTE = "Script to manage DNS record in vettom.co.uk by default or provide -z zoneid to create in another zone."
 
 # Use Arg Parse function to get input.
 P = argparse.ArgumentParser(description='Manage routine DNS tasks.', epilog=NOTE)
@@ -42,7 +42,7 @@ group.add_argument('-f', '--src_file', help='File containing Alias list, one per
 
 # Accepting regular arguments
 P.add_argument('-d','--destination',  help='Destination CNAME or IP')
-P.add_argument('-z','--zoneid', default=XXXXX, help='Zone ID, defaults to adobecqms ID')
+P.add_argument('-z','--zoneid', default=XXXXX, help='Zone ID, defaults to xxxx ID')
 P.add_argument('--destzoneid', default=XXXXX, help='Destination Zone ID for ELB only or if different zoneid')
 P.add_argument('--health_check', default=False, choices= ['True', 'False'] ,help='Evaluate health check, Default=False')
 
