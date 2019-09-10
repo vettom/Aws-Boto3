@@ -2,12 +2,13 @@
 # ----------------------------------------------------------------------------
 # Purpose : Manage DNS tasks like DNA A, Alias, update, list, remove etc.
 # Author:       Denny Vettom
-# Dependencies: Python3, Aws cli with profile, boto3, validators, socket
-# https://github.com/vettom/Aws-Boto3
+# Dependencies: Aws cli with profile, boto3 and dvmodule.py, validators, socket
+# https://github.com/vettom/Aws-Boto3 
 # ----------------------------------------------------------------------------
 # Name          Date            Comment                         Version
 # ----------------------------------------------------------------------------
 # DV            17/07/2019     FIrst ver add/update/delete record    V 1.0
+# DV            10/09/2019     Fixed file input and error check.     V 1.1
 
 import boto3, argparse, sys
 # import dvmodule as dv #Custom module
@@ -23,12 +24,14 @@ If request is to add resource script will check for existing entry and exit if e
 Script will create alias record if destination is CNAME, and A record if IP provided.
 """
 # Set a default value for Default Zone ID.
-DEFZONEID = "ABCD"
+DEFZONEID = "Z2AYG8VDA7NG3D"
 
-NOTE = "Script to manage DNS record, set default ZoneID or specify -z zoneid "
+NOTE = "Script to manage DNS record in adobecqms.net by default or provide -z zoneid to create in another zone."
 
 # Use Arg Parse function to get input.
-P = argparse.ArgumentParser(description='Manage DNS tasks, add/update/delete.', epilog=NOTE)
+P = argparse.ArgumentParser(description='Manage routine DNS tasks.', epilog=NOTE)
+
+# List last 10 snapshots for source hosts based on --src_device
 P.add_argument('Task', choices=['add','update', 'delete'], help='Choose task toperform')
 
 # Here mutually exclusive option to decide if it is IP, alias or list of aliases in file
@@ -39,8 +42,8 @@ group.add_argument('-f', '--src_file', help='File containing Alias list, one per
 
 # Accepting regular arguments
 P.add_argument('-d','--destination',  help='Destination CNAME or IP')
-P.add_argument('-z','--zoneid', default=DEFZONEID, help='Zone ID, set default variable if required')
-P.add_argument('--destzoneid', default='ABCD', help='Destination Zone ID for ELB only or if different zoneid')
+P.add_argument('-z','--zoneid', default=XXXXX, help='Zone ID, defaults to adobecqms ID')
+P.add_argument('--destzoneid', default=XXXXX, help='Destination Zone ID for ELB only or if different zoneid')
 P.add_argument('--health_check', default=False, choices= ['True', 'False'] ,help='Evaluate health check, Default=False')
 
 
@@ -79,14 +82,13 @@ def VerifyNoDNS(URL):
     # Test and make sure DNS entry does not exists, if exist stop script 
     try:
         Output = socket.gethostbyname(URL)   #If successful domain resolved so exit 
-        Result = True
+        # Output = False
+        return False
     except:
-        return
+        return True
 
-    if Result is True:
-        # print(" '{}' resolves to '{}' " .format(URL, Output))
-        print(" ERROR : '{}' already exists, use \'update\' to replace entry. " .format(URL))
-        exit()
+    
+        
 
 
 def VerifyDNSExists(URL):
@@ -195,18 +197,49 @@ def main():
 
         else:
             # Here creating Alias record to a CNAME
+            # execute based on -f or -s argument 
 
             # Verify destination is valid CNAME
             VerifyDNSExists(args.destination)
 
-            # Loop through all the Alias provided
-            for Alias in args.src_url:
+            if args.src_url:
+            # Loop through all the Alias provided if provided as argument
+                for Alias in args.src_url:
+                    try:
+                        #When creating entry ensure no entry exists already.
+                        Result = VerifyNoDNS(Alias)
+                        if Result is True:  
+                            DNSAliasRecord(Alias, Action)
+                        else:
+                            print(" WARNING : '{}' already exists, use \'update\' to replace entry. " .format(Alias))
+                    except Exception as ERR:
+                        print (" ERROR: DNS creation failed and errors is '{}' " .format(ERR))
+
+                exit()
+            elif args.src_file :
+                print (" INFO : Processing source file {} " .format(args.src_file))
                 try:
-                    #When creating entry ensure no entry exists already.
-                    VerifyNoDNS(Alias)
-                    DNSAliasRecord(Alias, Action)
+                    FILE = open(args.src_file, "r")
+                    LIST = FILE.readlines()
+                    FILE.close()
                 except Exception as ERR:
-                    print (" ERROR: DNS creation failed and errors is '{}' " .format(ERR))
+                    print ("Failed to open file {} " .format(args.src_file))
+
+                # Now contents of file is available in List, process it.
+                for Alias in LIST:
+                    try:
+                        Alias = Alias.rstrip("\n")
+                        #When creating entry ensure no entry exists already.
+                        Result = VerifyNoDNS(Alias)
+                        if Result is True:  
+                            DNSAliasRecord(Alias, Action)
+                        else:
+                            print(" WARNING : '{}' already exists, use \'update\' to replace entry. " .format(Alias))
+                    except Exception as ERR:
+                        print (" ERROR: DNS creation failed and errors is '{}' " .format(ERR))
+                
+
+                exit ()
 
     elif args.Task == "update":
         Action = "UPSERT"

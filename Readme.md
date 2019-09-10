@@ -13,7 +13,7 @@
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Script details 
 
-### dnsupdate.py
+### dnsctl.py
   Script can accept list of aliases or a list provided in a file. Zone ID is required, destzoneid required if destination alias in different DNS zone
 
 ``` 
