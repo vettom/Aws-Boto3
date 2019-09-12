@@ -1,0 +1,12 @@
+#   0          1    2.        3.     4.    5.   6.      7.      8.  9. 10.     11   
+#  Topology  ExtIP INT_IP Hostname Region VPC InstID Insttype Size AZ TopoID Cloud
+vettompreprod63 34.21.63.168 10.74.4.42 vettompreprod63-publish1euwest1 eu-west-1 vpc-9b9dfb i-0323704c3962db074 Publisher m4.large eu-west-1a 2i7msuh48022bus3b494cr AWS
+vettompreprod63 72.30.82.248 10.74.4.24 vettompreprod63-author1euwest1 eu-west-1 vpc-9c8b9b i-083d4dd2eebe73410 Author m4.xlarge eu-west-1a 2i7msuh48022b7pfb494cr AWS
+vettompreprod63 52.58.5.9 10.74.14.34 vettompreprod63-dispatcher1eucentral1 eu-central-1 vpc-9918f4 i-064346151fdd2b5b8 Dispatcher m4.large eu-central-1a 2i7msuhb7pfbus3b494cr AWS
+vettompreprod63 35.15.214.37 10.74.14.43 vettompreprod63-publish1eucentral1 eu-central-1 vpc-9e18f4 i-0366fa7854b006f8c Publisher m4.large eu-central-1a 2i7mspfbus3b494cr AWS
+vettomhotfix63 34.20.2.15 10.74.2.44 vettomhotfix63-dispatcher1euwest1 eu-west-1 vpc-fd6e9b i-092ecf43998e776ae Dispatcher m4.large eu-west-1a 1aqsvri40pmj987plkmbl AWS
+vettomhotfix63 52.212.100.248 10.74.2.24 vettomhotfix63-publish1euwest1 eu-west-1 vpc-fd2e99 i-0663a9e82594ed367 Publisher m4.large eu-west-1a 1aqsvri402pmj987plkmbl AWS
+vettomhotfix63 54.194.82.27 10.74.2.30 vettomhotfix63-author1euwest1 eu-west-1 vpc-fd6e9 i-07ba39cd3f4f9d53c Author m4.large eu-west-1a 1aqsvri402239dj987plkmbl AWS
+vettomhotfix65 52.50.12.194 10.74.0.52 vettomhotfix65-publish1euwest1 eu-west-1 vpc-051a6920b5ef0b i-01876a6d817c0c305 Publisher m5.large eu-west-1a 1rqq3igic5qtjf7q7f6is AWS
+vettomhotfix65 108.18.69.11 10.74.0.42 vettomhotfix65-dispatcher1euwest1 eu-west-1 vpc-051a6920b5e0db i-0353fdd932a63ab6d Dispatcher m5.large eu-west-1a 1rqqicd26ls5qtjf7q7f6is AWS
+vettomhotfix65 10.12.19.183 10.74.0.28 vettomhotfix65-author1euwest1 eu-west-1 vpc-051a62ab5ae0db i-0b9aa97ccbb42033c Author m5.large eu-west-1a 1rqq3d26ls5qtjf7q7f6is AWS
