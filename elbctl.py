@@ -8,6 +8,7 @@
 # Name          Date            Comment                         Version
 # ----------------------------------------------------------------------------
 # DV            09/09/2019     Initial Version                  V 1.0
+# DV            16/09/2019     Region info from Document        V 1.1
 # 
 """
 Script for list/status/attach/detach tasks. Default variables Profile=default, Region=eu-west-1
@@ -123,8 +124,12 @@ def AtachinstancetoELB(ELB, Instances):
     # Loop through Instances and issue attach command
     for I in Instances:
         try: 
-            InstID = ams.GetInstID(I)
-            Host = ams.GetHostname(InstID)
+            # Call function that gets instance information like ID,host, Region, AZ, VPC
+            global Region
+            AWSinfo = ams.GetInstAWS(I)
+            InstID = AWSinfo[0]
+            Host = AWSinfo[1]
+            Region = AWSinfo[2]
             if InstID is None:
                 print (" \nERROR : Failed to get Instance ID for {}. Please chek Instance ID/Hostname provided. " .format(I))
                 exit()
@@ -146,8 +151,12 @@ def DetachfromELB(ELB, Instances):
     # Loop through Instances and issue attach command
     for I in Instances:
         try: 
-            InstID = ams.GetInstID(I)
-            Host = ams.GetHostname(InstID)
+            # Call function that gets instance information like ID,host, Region, AZ, VPC
+            global Region
+            AWSinfo = ams.GetInstAWS(I)
+            InstID = AWSinfo[0]
+            Host = AWSinfo[1]
+            Region = AWSinfo[2]
             if InstID is None:
                 print (" \nERROR : Failed to get Instance ID for {}. Please chek Instance ID/Hostname provided. " .format(I))
                 exit()
@@ -242,7 +251,7 @@ def main():
             AtachinstancetoELB(ELB, args.instances)
 
         # At end sleep for few seconds then status
-        print ("\n INFO : Waiting few seconds before checking status...")
+        print ("\n INFO : Waiting 20 seconds before checking status...")
         time.sleep(20)
         for ELB in args.elb:
             Elbstatus(ELB,Region)
@@ -255,8 +264,8 @@ def main():
             DetachfromELB(ELB, args.instances)
 
         # At end sleep for few seconds then status
-        print ("\n INFO : Waiting few seconds before checking status...")
-        time.sleep(10)
+        print ("\n INFO : Waiting 20 seconds before checking status...")
+        time.sleep(20)
         for ELB in args.elb:
             Elbstatus(ELB,Region)
         
