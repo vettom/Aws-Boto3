@@ -8,8 +8,10 @@
 
 ### Scripts 
 - [dnsctl.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Add/remove/update DNS record
-- [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Manage Ec2 instance stop/start
-- [elbctl.py](https://github.com/vettom/Aws-Boto3#elbctlpy)             : Mange Classig ELB 
+- [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Generic,  manage Ec2 instance stop/start
+- [elbctl.py](https://github.com/vettom/Aws-Boto3#elbctlpy)             : Custom, mange Classig ELB 
+- [elbctlv1.py](https://github.com/vettom/Aws-Boto3#elbctlv1py)             : Generic mange Classig ELB
+- [dvsnaps.py](https://github.com/vettom/Aws-Boto3#dvsnapspy)             :  Cutom, manage Snapshot tasks. Requires my CMDB 
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Script details 
 
@@ -121,3 +123,51 @@ optional arguments:
   --region REGION      Default is eu-west-1, or provide as argument
   --instance INSTANCE  Name of Aws instance
 ```
+
+
+### dvsnaps.py
+Create/List snapshots. Clone option to take snapshot and replace it on destination host. Copy option to take snapshot and mount it in parallel on destination host. Listvol to list all volumes.
+
+```
+usage: dvsnaps.py [-h] {list,listvol,snap,clone,copy,rmvol} ...
+
+Manage routine snapshot tasks.
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+Required arguments:
+  {list,listvol,snap,clone,copy,rmvol}
+    list                List snapshots in last 10days or date specified
+    listvol             List volume and size of volumes
+    snap                Create snapshot of volume provided as argument
+    clone               Attach snap of Source disk to Dest by replacing
+                        dest_device
+    copy                Attach snapshot of Source to destination for parallel
+                        mounting
+    rmvol               Detach and remove unused volume
+
+Script requires CMDB with hosts detail. Scripts uses CMDB to speed up decition
+
+```
+
+### elbctlv1.py
+
+usage: elbctlv1.py [-h] -a {list,status,attach,detach} [-p PROFILE]
+                   [-r REGION] [--elb ELB [ELB ...]] [--vpc VPC [VPC ...]]
+                   [-i INSTANCES [INSTANCES ...]]
+
+ELB Operations tasks
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -a {list,status,attach,detach}, --action {list,status,attach,detach}
+                        list/status/attach/detach
+  -p PROFILE, --profile PROFILE
+                        If no profile provided, assumes default
+  -r REGION, --region REGION
+                        Default is eu-west-1, or provide as argument
+  --elb ELB [ELB ...]   Name/s of Aws ELB
+  --vpc VPC [VPC ...]   Name/s of Aws VPC
+  -i INSTANCES [INSTANCES ...], --instances INSTANCES [INSTANCES ...]
+                        Instance ID/s
