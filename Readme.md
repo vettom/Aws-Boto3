@@ -21,7 +21,7 @@
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Script details 
 
-### albctl.py
+### albctl.py (ElB v2)
   List/status : Can list/status of all ALB associated with Topoligy VPC.
   Attach/detach : Accepts multiple ALB, Instances. All instances must be in same region. Unless TG name specified all TG for ALB will be updated.
 
@@ -176,7 +176,7 @@ Script requires CMDB with hosts detail. Scripts uses CMDB to speed up decition
 ```
 
 ### elbctlv1.py
-
+```
 usage: elbctlv1.py [-h] -a {list,status,attach,detach} [-p PROFILE]
                    [-r REGION] [--elb ELB [ELB ...]] [--vpc VPC [VPC ...]]
                    [-i INSTANCES [INSTANCES ...]]
@@ -195,3 +195,4 @@ optional arguments:
   --vpc VPC [VPC ...]   Name/s of Aws VPC
   -i INSTANCES [INSTANCES ...], --instances INSTANCES [INSTANCES ...]
                         Instance ID/s
+  ```
