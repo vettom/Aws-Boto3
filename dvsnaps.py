@@ -8,6 +8,7 @@
 # Name          Date            Comment                         Version
 # ----------------------------------------------------------------------------
 # DV            20/02/2019     Initial Version in Py3             V 1.0
+# DV            28/09/2019     Create snap and snap size             V 1.2
 #
 import boto3, time, re, sys, argparse
 import datetime, dateutil
@@ -17,25 +18,24 @@ import dvclass
 
 """
 This script is designed to work with my custom CMDB created from MSC. Main purpose is to identify disk/snapshots and attach/detach
-Clone : Get latest or based on specific date snapshot and attach to destination replacing disk specified in dest_disk
-Copy : attach snapshot to dest with custom device name specified or xvdg
+Clone : Create volume from Source disk snapshot and replace it on destination. Will fail if destination device does not exist, use copy option instead
+        This will restart Destination server. Can specify which snapshot, Destination device etc
+Copy : attach snapshot to dest with custom device name specified or xvdg. No disruption to service
 List  : List snapshots taken in past 10days. Option to specify date as well as device name.
+Litvol : List volume information for host
+Rmvol : Detach and delete volume.
 
+Mostly use dvmodule, dvclass also used.
 """
 # Below is CMDB file, if does not exist, skip the task
 LIST = "/Users/vettom/Scripts/Conf/mscallenv.txt"
 global ec2resource, ec2client
 
 Today = str(datetime.date.today())
-NOTE = "Script requires CMDB with hosts detail. Scripts uses CMDB to speed up decition"
+NOTE = "Script requires CMDB with hosts detail. Region and VPCinformation from CMDB"
 # Use Arg Parse function to get input.
 P = argparse.ArgumentParser(description='Manage routine snapshot tasks.', epilog=NOTE)
-# Add arguments that are required for all sub tasks
 
-# P.add_argument('-p','--profile', default="default", help='Default profile=default')
-# P.add_argument('--snap_id', help='Specify Snapshot ID if known, or latest snap of src_device used')
-# P.add_argument('--src_device', default="/dev/xvdba", help='Disk Device name on Source host. Defaults to /dev/xvdba')
-# P.add_argument('--start_date', default=Today, help='Defults to todays date or specify YYYY/MM/DD')
 
 
 # Use sub parse to define optional arguments specific to task.
@@ -72,6 +72,7 @@ Clone.add_argument('--dest_device', default="/dev/xvdba", help='Disk Device name
 Clone.add_argument('--voltype', default="standard", choices=['standard', 'gp2', 'sc1', 'st1'], help='Volume type to be created standard(default)/gp2/sc1/st1')
 Clone.add_argument('-p','--profile', default="default", help='Default profile=default')
 Clone.add_argument('--src_device', default="/dev/xvdba", help='Disk Device name on Source host. Defaults to /dev/xvdba')
+Clone.add_argument('--volsize', help='Disk Dsize for the new volume in GB')
 Clone.add_argument('--start_date', default=Today, help='Defults to todays date or specify YYYY/MM/DD')
 
 # Copy action attache disk to destination for parallel mount.
@@ -82,6 +83,7 @@ Copy.add_argument('--snap_id', help='Specify Snapshot ID or lates based on src_d
 Copy.add_argument('--dest_device', default="/dev/sdg", help='Disk Device name on Destination host. Defaults to /dev/sdg')
 Copy.add_argument('--voltype', default="gp2", choices=['standard', 'gp2', 'sc1', 'st1'], help='Volume type to be created standard/gp2(default)/sc1/st1')
 Copy.add_argument('-p','--profile', default="default", help='Default profile=default')
+Copy.add_argument('--volsize', help='Disk Dsize for the new volume in GB')
 Copy.add_argument('--src_device', default="/dev/xvdba", help='Disk Device name on Source host. Defaults to /dev/xvdba')
 Copy.add_argument('--start_date', default=Today, help='Defults to todays date or specify YYYY/MM/DD')
 
@@ -452,7 +454,13 @@ def main():
 
             try:
                 print (" INFO : Creating Volume from Snapshot" , SNAP_ID, DestAZone, args.voltype)
-                NewVol = ec2resource.create_volume(SnapshotId=SNAP_ID, AvailabilityZone=DestAZone, VolumeType=args.voltype)
+                # If Volume size provide as argument create new volume for specified size.
+                if args.volsize is None:
+                    NewVol = ec2resource.create_volume(SnapshotId=SNAP_ID, AvailabilityZone=DestAZone, VolumeType=args.voltype)
+                else:
+                    print (" INFO : New Volume Size is {}GB" .format(args.volsize))
+                    NewVol = ec2resource.create_volume(SnapshotId=SNAP_ID, AvailabilityZone=DestAZone, VolumeType=args.voltype, Size=int(args.volsize))
+
                 waiter = ec2client.get_waiter('volume_available')
                 waiter.wait(VolumeIds=[NewVol.id])
                 print (" INFO : New Volume " , NewVol.id , " Created from " + SNAP_ID , " and is Available")
@@ -535,7 +543,14 @@ def main():
                 # Set Boto3 resource for handling device.
                 ec2resource = dv.SetEC2Resource(Profile, Region)
                 print (" INFO : Creating Volume from Snapshot " , SNAP_ID, DestAZone, args.voltype)
-                NewVol = ec2resource.create_volume(SnapshotId=SNAP_ID, AvailabilityZone=DestAZone, VolumeType=args.voltype)
+                if args.volsize is None:
+                    # Create volume same size as snapshot
+                    NewVol = ec2resource.create_volume(SnapshotId=SNAP_ID, AvailabilityZone=DestAZone, VolumeType=args.voltype)
+                else:
+                    # Create volume with specified size
+                    print (" INFO : Creating new volume with size {}GB" .format(args.volsize))
+                    NewVol = ec2resource.create_volume(SnapshotId=SNAP_ID, AvailabilityZone=DestAZone, VolumeType=args.voltype, Size=int(args.volsize))
+
                 ec2client = dv.SetEC2Client(Profile, Region)
                 waiter = ec2client.get_waiter('volume_available')
                 waiter.wait(VolumeIds=[NewVol.id])

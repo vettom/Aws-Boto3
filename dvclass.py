@@ -8,6 +8,7 @@
 # Name          Date            Comment                         Version
 # ----------------------------------------------------------------------------
 # DV            07/09/2019     Initial Version                  V 1.0
+# DV            09/01/2020     Addinng ELBV2 in boto3           V 1.0
 #  CMDB Format as below
 #   0          1    2.        3.     4.    5.   6.      7.      8.  9. 10.     11   
 #  Topology  ExtIP INT_IP Hostname Region VPC InstID Insttype Size AZ TopoID Cloud
@@ -36,7 +37,7 @@ class AMSCMDB:
         # find and return instance ID from the CMDB
         try:
         # Get Instance ID or Hostname as argument and return InstanceID and Hostname
-            for Line in CMDB:
+            for Line in CMDB:   
                 if (re.search('\s%s\s' % ARG, Line)):
                     if (re.search('\sAWS\s', Line)):
                         Var = Line.split()
@@ -145,8 +146,20 @@ class AWSBoto3:
             # Set client for Classic Loadbalancer.
             ec2client = session.client('elb', region_name=Reg)
             return ec2client
-        except:
-            print (" ERROR : Failed to set ec2client, please ensure arguments are passed. Do")
+        except Exception as ERR:
+            print (" ERROR : Failed to set ec2client, please ensure arguments are passed. \n {}" .format(ERR))
+            print(ERR)
+            exit(1)
+    
+    def SetALBClient(self, Prof, Reg):
+        try:
+            # Sets elb client with profile and Region. Depending on the Boto3 funciton use client or resource.
+            session = boto3.Session(profile_name=Prof)
+            # Set client for Classic Loadbalancer.
+            ec2client = session.client('elbv2', region_name=Reg)
+            return ec2client
+        except Exception as ERR:
+            print (" ERROR : Failed to set ec2client, please ensure arguments are passed. \n {}" .format(ERR))
             sys.exit(1)
 
 
