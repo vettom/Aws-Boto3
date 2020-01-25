@@ -1,4 +1,4 @@
-# Python 3.x - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/Robin150px.png "Denny Vettom Logo")
+# Python 3.x - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/RobinR100px.png "Denny Vettom Logo")
 
 ## Getting Started
 - All scripts are written in Python 3.x and requires Boto3
