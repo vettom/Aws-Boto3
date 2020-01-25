@@ -23,8 +23,25 @@
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Script details 
 
+### albctl.py
+  List/status : Can list/status of all ALB associated with Topoligy VPC.
+  Attach/detach : Accepts multiple ALB, Instances. All instances must be in same region. Unless TG name specified all TG for ALB will be updated.
+
+```
+  Required arguments:
+  {list,status,attach,detach}
+    list                Show list of all ALB configured for Topology
+    status              Show status of all ALB configured for Topology. Use -e
+                        or -t
+    attach              Attach instance/s to ALB, apply to all TG unless
+                        specified.
+    detach              Detach instance/s to ALB, apply to all TG unless
+                        specified.
+  ```
+
 ### dnsctl.py
-  Script can accept list of aliases or a list provided in a file. Zone ID is required, destzoneid required if destination alias in different DNS zone
+  Helps with creation of DNS record. Ideal scenario will be when many DNA names are pointing to single CNAME. 
+ >Script can accept list of aliases or a list provided in a file. Zone ID is required, destzoneid required if destination alias in different DNS zone
 
 ``` 
 usage: dnsctl.py [-h] (-s SRC_URL [SRC_URL ...] | -f SRC_FILE)
@@ -66,6 +83,7 @@ to create in another zone.
 
 ### elbctl.py
   Manage classic loadbalancer. List ELB in a VPC, status of ELB's, attach/detach instances
+
   > Script can accept multiple ELB, and instances, but all must be in same vpc. If multiple instances provided for attach/detach same action performed on all ELB names provided.
 
 ```
