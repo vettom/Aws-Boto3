@@ -6,18 +6,16 @@
 - Unless specified as 'Generic', script rely on dvclass and a custom CMDB file for making decisions easy.
 - All scripts will have help available by running -h
 
-**Collection of Python3 scripts to manage AWS instance with help of Boto3. Not many generic scripts as AWS CLI can do those tasks.**
 
 
 
-
-
-### Scripts (Requires Custom CMDB mentioned in dvclass.py)
+# ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Scripts (Requires Custom CMDB)
+- [albctl.py](https://github.com/vettom/Aws-Boto3#albctlpy)             : Custom, list/status/detach/attach multiple ALB and instances.  
 - [dnsctl.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Add/remove/update DNS record
 - [elbctl.py](https://github.com/vettom/Aws-Boto3#elbctlpy)             : Custom, mange Classig ELB 
 - [dvsnaps.py](https://github.com/vettom/Aws-Boto3#dvsnapspy)             :  Cutom, manage Snapshot tasks. Requires my CMDB 
 
-### Generic scripts ()
+## Generic scripts ()
 - [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)       : Generic,  manage Ec2 instance stop/start
 - [elbctlv1.py](https://github.com/vettom/Aws-Boto3#elbctlv1py)             : Generic mange Classic ELB
 
