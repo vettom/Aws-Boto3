@@ -1,17 +1,25 @@
-# Python - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/Robin2cm.png "Denny Vettom Logo")
-**Collection of Python3 scripts to manage AWS instance with help of Boto3. Scripts are written in self help mode.**
-> scriptname -h for help
-> All scripts expect AWS cli to be configured and at least one profile called default
+# Python 3.x - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/RobinR "Denny Vettom Logo")
+
+## Getting Started
+- All scripts are written in Python 3.x and requires Boto3
+- Authentication is via credentials and profile you have configured in $HOME/.aws (Same files as AWS CLI )
+- Unless specified as 'Generic', script rely on dvclass and a custom CMDB file for making decisions easy.
+- All scripts will have help available by running -h
+
+**Collection of Python3 scripts to manage AWS instance with help of Boto3. Not many generic scripts as AWS CLI can do those tasks.**
 
 
 
 
-### Scripts 
+
+### Scripts (Requires Custom CMDB mentioned in dvclass.py)
 - [dnsctl.py](https://github.com/vettom/Aws-Boto3#dnsupdatepy)               : Add/remove/update DNS record
-- [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)             : Generic,  manage Ec2 instance stop/start
 - [elbctl.py](https://github.com/vettom/Aws-Boto3#elbctlpy)             : Custom, mange Classig ELB 
-- [elbctlv1.py](https://github.com/vettom/Aws-Boto3#elbctlv1py)             : Generic mange Classig ELB
 - [dvsnaps.py](https://github.com/vettom/Aws-Boto3#dvsnapspy)             :  Cutom, manage Snapshot tasks. Requires my CMDB 
+
+### Generic scripts ()
+- [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)       : Generic,  manage Ec2 instance stop/start
+- [elbctlv1.py](https://github.com/vettom/Aws-Boto3#elbctlv1py)             : Generic mange Classic ELB
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Script details 
 
