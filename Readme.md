@@ -1,10 +1,10 @@
 # Python 3.x - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/RobinR100px.png "Denny Vettom Logo")
 
 ## Getting Started
-- All scripts are written in Python 3.x and requires Boto3
-- Authentication is via credentials and profile you have configured in $HOME/.aws (Same files as AWS CLI )
-- Unless specified as 'Generic', script rely on dvclass and a custom CMDB file for making decisions easy.
-- All scripts will have help available by running -h
+- [X] All scripts are written in Python 3.x and requires Boto3
+- [X] Authentication is via credentials and profile you have configured in $HOME/.aws (Same files as AWS CLI )
+- [X] Unless specified as 'Generic', script rely on dvclass and a custom CMDB file for making decisions easy.
+- [X] All scripts will have help available by running -h
 
 
 
