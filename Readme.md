@@ -1,12 +1,16 @@
 # Python 3.x - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/RobinR100px.png "Denny Vettom Logo")
 
+# Development Principle
+![alt text](https://vettom.github.io/images/dvethos.jpg "Denny Vettom Development ethos ")
+
 ## Getting Started
 - [X] All scripts are written in Python 3.x and requires Boto3
 - [X] Authentication is via credentials and profile you have configured in $HOME/.aws (Same files as AWS CLI )
 - [X] Unless specified as 'Generic', script rely on dvclass and a custom CMDB file for making decisions easy.
 - [X] All scripts will have help available by running -h
 
-
+# Development Principle
+![alt text](https://vettom.github.io/images/dvethos.jpg "Denny Vettom Development ethos ")
 
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Scripts (Requires Custom CMDB)
@@ -16,10 +20,37 @@
 - [dvsnaps.py](https://github.com/vettom/Aws-Boto3#dvsnapspy)             :  Cutom, manage Snapshot tasks. Requires my CMDB 
 
 ## Generic scripts ()
+- [lb-whitelistcheck.py](https://github.com/vettom/Aws-Boto3#lb-whitelistcheckpy)       : Check if IP is whitelisted on ELB/ALB or print all SG rules attached to ALB/ELB
 - [ec2instance.py](https://github.com/vettom/Aws-Boto3#ec2instancepy)       : Generic,  manage Ec2 instance stop/start
 - [elbctlv1.py](https://github.com/vettom/Aws-Boto3#elbctlv1py)             : Generic mange Classic ELB
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Script details 
+
+### lb-whitelistcheck.py
+    Accept ELB/ALB name as input along with profile and region (or Default and eu-west-1 used)
+    - Print all rules attached to ELB/ALB
+    - Check if specifies IP's are whitelisted or not, and if whitelisted Rule is displayed with SG name
+
+```
+./lb-whitelistcheck.py
+usage: lb-whitelistcheck.py [-h] {alb,elb,albcheck,elbcheck} ...
+
+Print all SG rules or check if specified IP addresses are whitelisted for LB
+or not.
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+Required arguments:
+  {alb,elb,albcheck,elbcheck}
+    alb                 Print all SecurityGroup Rules attached to ALB
+    elb                 Print SecurityGroup all Rules attached to ALB
+    albcheck            Check if provided IP/s are whitelisted on ALB and
+                        prints rule and ServiceGroup name
+    elbcheck            Check if IP/s are whitelisted on ELB and prints rule
+                        and ServiceGroup name
+
+```
 
 ### albctl.py (ElB v2)
   List/status : Can list/status of all ALB associated with Topoligy VPC.
