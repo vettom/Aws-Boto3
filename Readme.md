@@ -9,8 +9,6 @@
 - [X] Unless specified as 'Generic', script rely on dvclass and a custom CMDB file for making decisions easy.
 - [X] All scripts will have help available by running -h
 
-# Development Principle
-![alt text](https://vettom.github.io/images/dvethos.jpg "Denny Vettom Development ethos ")
 
 
 # ![alt text](https://vettom.github.io/images/dv-tec-logo-round2cm.png "Denny Vettom  Tech Logo") Scripts (Requires Custom CMDB)
