@@ -30,7 +30,7 @@ SCR_HOME = os.path.dirname(os.path.realpath(__file__))
 
 # ----- Input section ----
 # Argument Parser with Subparse for each actopn
-NOTE = "ELB/ALB Security Group list/print ingress, check if IP whitelisted. \n Profile and Regin defaults to 'default' and 'eu-west-1' unless provided as argument. Requires Credentials to be stored in AWS cli configuration format. \n Instance check will gt Bpbu and region from CMDB "
+NOTE = "ELB/ALB Security Group list/print ingress, check if IP whitelisted. \n Profile and Regin defaults to 'default' and 'eu-west-1' unless provided as argument. Requires Credentials to be stored in AWS cli configuration format. "
 
 P = argparse.ArgumentParser(description='Print all SG rules or check if specified IP addresses are whitelisted for LB or not.', epilog=NOTE)
 Sub = P.add_subparsers(title="Required arguments", dest="Task")
