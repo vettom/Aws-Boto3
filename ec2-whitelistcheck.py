@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # ----------------------------------------------------------------------------
 # Purpose : List all security group rules attached to EC2.
-#         : Check if specified IP's are whitelisted on resource or not
+#         : Check if specified IP's are whitelisted on resource     or not
 # Author:       Denny Vettom
 # Web : https://vettom.github.io/ 
 # Dependencies: PYTHON -3, Boto3, Aws cli profiles, argparse, netaddr
