@@ -143,67 +143,7 @@ def ReturnIngress(sgroup,profile,region):
     except Exception as ERR:
         Err(f" {ERR} \n  ERROR: Failure to process Security Group Ingress")
 
-# def BuildALBWhitelist():
-#     try:
-#         global ec2clietw34
-#         ec2client = SetEC2Client(Profile, Region)
-#         Result = ec2client.describe_load_balancers(Names=[args.lbname],)
-#     except Exception as ERR: 
-#         Err(f" ERROR : Failed to execute describe on {args.lbname}  ")
-#         Err(ERR)
-#         exit()
 
-#     # Get list of Security Groups attached.
-#     try:
-#         for X in Result['LoadBalancers']:
-#             SG = X.get('SecurityGroups', None)
-
-#             # Loop through SG if not none
-#             if SG is not None:
-#                 # Loop Through group to get list of rules in Whitelist
-#                 Info(f"Procssing SG {SG}")
-#                 print("")
-#                 time.sleep(3)
-
-#                 for SGroup in SG:
-#                     ReturnIngress(SGroup,Profile,Region)
-#             else:
-#                 Err(f" ERROR: Failed to get Service Group list.")
-#                 exit()
-#     except Exception as ERR:
-#         Err(ERR)
-#         exit()
-
-
-
-# def ReturnIngress(sgroup,profile,region):
-#     # List all Ingress rules and update Global variable for processing.
-#     try:
-#         # Set EC2 client to print SG rules
-#         ec2client = SetEC2Client(Profile, Region)
-#     except Exception as ERR:
-#         cprint.Err(f"{ERR}")
-    
-#     try:
-#         # Get ingress rules
-#         Result = ec2client.describe_security_groups( GroupIds=[sgroup]         )
-#     except Exception as ERR:
-#         cprint.Err(f" {ERR} \n  ERROR: Failed to describe Security Group")
-
-#     try:
-#         global WhiteList
-#         Var = []
-
-#         for X in Result['SecurityGroups']:
-#             for Y in X['IpPermissions']:
-#                 # Loop through IPV4 whitlists
-#                 for A in Y['IpRanges']:
-                    
-#                     Var = [A.get('CidrIp'), sgroup, Y['FromPort'], Y['ToPort'] ]
-#                     if Var is not None:
-#                         WhiteList.append(Var)
-#     except Exception as ERR:
-#         cprint.Err(f" {ERR} \n  ERROR: Failure to process Security Group Ingress")
 
 def ValidateIPV4(VAR):
     try:
