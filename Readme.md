@@ -90,14 +90,14 @@ optional arguments:
   -d DESTINATION, --destination DESTINATION
                         Destination CNAME or IP
   -z ZONEID, --zoneid ZONEID
-                        Zone ID, defaults to adobecqms ID
+                        Zone ID, defaults to vettomcqms ID
   --destzoneid DESTZONEID
                         Destination Zone ID for ELB only or if different
                         zoneid
   --health_check {True,False}
                         Evaluate health check, Default=False
 
-Script to manage DNS record in adobecqms.net by default or provide -z zoneid
+Script to manage DNS record in vettomcqms.net by default or provide -z zoneid
 to create in another zone.
 ```
 
