@@ -29,7 +29,7 @@
     - Print all rules attached to ELB/ALB
     - Check if specifies IP's are whitelisted or not, and if whitelisted Rule is displayed with SG name
 
-```bash
+```python
 ./lb-whitelistcheck.py
 usage: lb-whitelistcheck.py [-h] {alb,elb,albcheck,elbcheck} ...
 
@@ -54,7 +54,7 @@ Required arguments:
   List/status : Can list/status of all ALB associated with Topoligy VPC.
   Attach/detach : Accepts multiple ALB, Instances. All instances must be in same region. Unless TG name specified all TG for ALB will be updated.
 
-```bash
+```python
   Required arguments:
   {list,status,attach,detach}
     list                Show list of all ALB configured for Topology
