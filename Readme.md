@@ -1,7 +1,9 @@
-# Python 3.x - Aws Boto3 Scripts ![alt text](https://vettom.github.io/images/RobinR100px.png "Denny Vettom Logo")
+<a href="https://vettom.github.io/"><img src="https://vettom.github.io/img/vettom-banner.jpg" alt="vettom.github.io" ></a>
+
+# Python 3.x - Aws Boto3 Scripts ![alt text]([[https://vettom.github.io/images/RobinR100px.png](https://avatars.githubusercontent.com/u/20859413?v=4)](https://avatars.githubusercontent.com/u/20859413?v=4) "Denny Vettom Logo")
 
 # Development Principle
-![alt text](https://vettom.github.io/images/dvethos.jpg "Denny Vettom Development ethos ")
+![alt text](https://vettom.github.io/images/dvethos.jpg alt="Denny Vettom Development ethos ")
 
 ## Getting Started
 - [X] All scripts are written in Python 3.x and requires Boto3
