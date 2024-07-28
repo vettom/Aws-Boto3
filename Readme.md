@@ -1,6 +1,6 @@
 <a href="https://vettom.github.io/"><img src="https://vettom.github.io/img/vettom-banner.jpg" alt="vettom.github.io" ></a>
 
-# Python 3.x - Aws Boto3 Scripts ![alt text]([[https://vettom.github.io/images/RobinR100px.png](https://avatars.githubusercontent.com/u/20859413?v=4)](https://avatars.githubusercontent.com/u/20859413?v=4) "Denny Vettom Logo")
+# Python 3.x - Aws Boto3 Scripts
 
 # Development Principle
 <img src="https://vettom.github.io/img/dvethos.jpg" >
